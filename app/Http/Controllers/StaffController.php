@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StaffEditRequest;
+use App\Http\Requests\StaffAddRequest;
+use App\Http\Requests\StaffUpdateRequest;
 use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
@@ -37,7 +39,7 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request )
+    public function store(StaffAddRequest $request )
     {
         $staff = new Staff();
         $staff->user_id = Auth::id();
@@ -80,7 +82,7 @@ class StaffController extends Controller
      * @param  \App\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function update(StaffEditRequest $request, Staff $staff)
+    public function update(StaffUpdateRequest $request, Staff $staff)
     {
         $staff->first_name =  $request->first_name;
         $staff->last_name = $request->last_name;
