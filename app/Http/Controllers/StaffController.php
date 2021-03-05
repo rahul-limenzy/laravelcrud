@@ -61,8 +61,12 @@ class StaffController extends Controller
      */
     public function show(Staff $staff)
     {
-        //dd($staff);
-        return view('staff.show', compact('staff'));
+        if(auth::id() == $staff->user_id) {
+            return view('staff.show', compact('staff'));
+        }
+        else {
+            return redirect('/staff')->with('status', 'invalid staff!');
+        }
     }
 
     /**
@@ -73,7 +77,13 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        return view('staff.edit', compact('staff'));
+        if(auth::id() == $staff->user_id) {
+            return view('staff.edit', compact('staff'));
+        }
+        else {
+            return redirect('/staff')->with('status', 'invalid staff!');
+        }
+
     }
 
     /**
@@ -111,9 +121,5 @@ class StaffController extends Controller
 
     }
 
-    /*public function viewDetail(Staff $staff)
-    {
-        dd($staff);
-    }*/
 
 }

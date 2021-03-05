@@ -24,8 +24,8 @@ class StaffAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'first_name' => 'required|alpha|max:255',
+            'last_name' => 'required|alpha|max:255',
             'email' => 'required|email|unique:staff,email',
             'address' => 'required|max:255',
 

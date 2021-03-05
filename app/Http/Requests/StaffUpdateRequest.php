@@ -26,8 +26,8 @@ class StaffUpdateRequest extends FormRequest
     {
         $staff = $this->route('staff');
         return [
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'first_name' => 'required|alpha|max:255',
+            'last_name' => 'required|alpha|max:255',
             'address' => 'required|max:255',
             'email' => ['required', Rule::unique('staff')->ignore($staff->id)]
         ];
