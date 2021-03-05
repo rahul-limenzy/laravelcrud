@@ -12,14 +12,15 @@
 
                     <div class="card-body">
                         @if (session('status'))
-                            <div class="alert alert-info alert-dismissible fade show" role="alert">{{ session('status') }}
+                            <div class="alert alert-info alert-dismissible fade show"
+                                 role="alert">{{ session('status') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         @endif
 
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="myTable" class="myTable table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Name</th>
@@ -33,12 +34,18 @@
                                     <td>{{$item->first_name.' '.$item->last_name}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>
-                                        <a class="card-link" style="color: black" href="{{ route('staff.show',$item->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a class="card-link" style="color: black" href="{{ route('staff.edit',$item->id) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                        <form action="{{ route('staff.destroy', $item->id)}}" method="POST" class="card-link" style="display: inline">
+                                        <a class="card-link" style="color: black"
+                                           href="{{ route('staff.show',$item->id) }}"><i class="fa fa-eye"
+                                                                                         aria-hidden="true"></i></a>
+                                        <a class="card-link" style="color: black"
+                                           href="{{ route('staff.edit',$item->id) }}"><i class="fa fa-pencil-square-o"
+                                                                                         aria-hidden="true"></i></a>
+                                        <form action="{{ route('staff.destroy', $item->id)}}" method="POST"
+                                              class="card-link" style="display: inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" id="delete" class="btn fa-input" onclick="return confirm('confirm deletion?')">
+                                            <button type="submit" id="delete" class="btn fa-input"
+                                                    onclick="return confirm('confirm deletion?')">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
@@ -56,32 +63,11 @@
     </div>
 
 @endsection
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('js/adminlte.min.js')}}"></script>
-<script src="{{asset('js/demo.js')}}"></script>
-<script src="{{asset('js/jquery.min.js')}}"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true,
-            "autoWidth": false,
-        });
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
+    $(document).ready(function () {
+        $.noConflict();
+        $('#myTable').DataTable();
     });
 </script>

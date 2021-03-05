@@ -20,8 +20,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!--datatable-->
-    <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+
 
 
     <!-- FontAwesome -->
