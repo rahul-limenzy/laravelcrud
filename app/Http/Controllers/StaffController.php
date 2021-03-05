@@ -8,6 +8,7 @@ use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use mysql_xdevapi\Exception;
 
 class StaffController extends Controller
 {
@@ -101,8 +102,10 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        $staff = Staff::find($staff['id']);
-        $staff->delete();
+        try {
+            $staff->delete();
+        } catch (\Exception $e) {
+        }
 
         return redirect('/staff')->with('status', 'staff deleted!');
 
