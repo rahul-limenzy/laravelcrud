@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StaffAddRequest;
 use App\Http\Requests\StaffUpdateRequest;
+use App\Mail\welcomeMail;
 use App\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,10 +51,11 @@ class StaffController extends Controller
         $staff->email = $request->email;
         $staff->address = $request->address;
         $staff->save();
-        Mail::to($staff->email);
-         Mail::raw('hello staff! welcome to sampleApp', function ($message)  {
+//        Mail::raw('hello staff! welcome to sampleApp', function ($message) use ($staff) {
+//            $message->to($staff->email)->subject('Welcome');
+//         });
+        Mail::to($staff->email)->send(new welcomeMail($staff));
 
-         });
         return redirect('/staff')->with('status', 'staff created!');
     }
 
